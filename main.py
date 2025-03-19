@@ -33,7 +33,8 @@ TEXTS = [
     garpike and stingray are also present.'''
 ]
 
-registrovani_uzivatele = {"bob": "123", "ann": "pass123", "mike": "password123", "liz": "pass123"}
+registrovani_uzivatele = {"bob": "123", "ann": "pass123", 
+                          "mike": "password123", "liz": "pass123"} 
 pomlcka = 40 * "-"
 
 prihlas_jmeno = input("Zadej své přihlašovací jméno! ")
@@ -51,100 +52,93 @@ if registrovani_uzivatele.get(prihlas_jmeno) == prihlas_heslo:
     def pocet_slov(texty):
         '''Spočítá počet slov v zadaném textu'''
         return len(texty.split())
-    def počet_slov_zač_velkým_písmenem(texty):
+    
+    def pocet_slov_zac_velkym_pismenem(texty):
         '''Spočítá počet slov začínající velkým písmenem'''
-        počet = 0
-        for počet_slov in texty.split():
-            if počet_slov.istitle():
-                počet += 1
-        return počet
+        pocet = 0
+        for pocet_slov in texty.split():
+            if pocet_slov.istitle():
+                pocet += 1
+        return pocet
 
-    def počet_slov_velká_písmena(texty):
+    def pocet_slov_velka_pismena(texty):
         '''Spočítá počet slov, která obsahují jen velká písmena'''
-        počet = 0
-        for počet_slov in texty.split():
-            if počet_slov.isupper():
-                počet += 1
-        return počet
+        pocet = 0
+        for pocet_slov in texty.split():
+            if pocet_slov.isupper():
+                pocet += 1
+        return pocet
         
-    def počet_slov_malá_písmena(texty):
+    def pocet_slov_mala_pismena(texty):
         '''Spočítá počet slov, která obsahují jen malá písmena'''
-        počet = 0
-        for počet_slov in texty.split():
-            if počet_slov.islower():
-                počet += 1
-        return počet
+        pocet = 0
+        for pocet_slov in texty.split():
+            if pocet_slov.islower():
+                pocet += 1
+        return pocet
         
-    def počet_čísel(texty):
+    def pocet_cisel(texty):
         '''Spočítá počet slov, která obsahují čísla'''
-        počet = 0
-        for počet_slov in texty.split():
-            if počet_slov.isnumeric():
-                počet += 1
-        return počet
+        pocet = 0
+        for pocet_slov in texty.split():
+            if pocet_slov.isnumeric():
+                pocet += 1
+        return pocet
         
-    def suma_čísel(texty):
+    def suma_cisel(texty):
         '''Spočítá sumu všech čísel v textu'''
-        počet = 0   
+        pocet = 0   
         for suma in texty.split():
             if suma.isnumeric():
-                počet += int(suma)
-        return počet
+                pocet += int(suma)
+        return pocet
         
-    def počet_písmen_ve_slově(texty):
+    def pocet_pismen_ve_slove(texty):
         '''Spočítá četnost různých délek slov v textu'''
-        počet_výskytů = dict()           
+        pocet_vyskytu = dict()           
         for slovo in texty.split():
-            slovo_bez_znaků = slovo.strip(",.!?:")
-            délka = len(slovo_bez_znaků)
-            počet_výskytů[délka] = počet_výskytů.get(délka, 0) + 1
-        for délku, počet in sorted(počet_výskytů.items()):
-            print(f"{délku:>6}|{'*' * počet:20}| {počet}", sep="\t")
+            slovo_bez_znaku = slovo.strip(",.!?:")
+            delka = len(slovo_bez_znaku)
+            pocet_vyskytu[delka] = pocet_vyskytu.get(delka, 0) + 1
+        for delku, pocet in sorted(pocet_vyskytu.items()):
+            print(f"{delku:>7} | {'*' * pocet:20}| {pocet}", sep="\t")
+
+    def vyber_textu(text):
+        print(pomlcka)
+        print(f"Ve vybraném textu je {pocet_slov(text)} slov.")
+        print(
+            f"Ve vybraném textu je {pocet_slov_zac_velkym_pismenem(text)}"
+            " slov začínajících velkým písmenem."
+            )
+        print(
+            f"Ve vybraném textu je {pocet_slov_velka_pismena(text)}"
+            " slov obsahující velká písmena."
+            )
+        print(
+            f"Ve vybraném textu je {pocet_slov_mala_pismena(text)}"
+            " slov obsahující malá písmena."
+            )
+        print(f"Ve vybraném textu je {pocet_cisel(text)} slov obsahující čísla.")
+        print(f"Ve vybraném textu je součet všech čísel {suma_cisel(text)}.")
+        print(pomlcka)
+        print(f"{"  délka":6} | {"výskyt":20}| počet")
+        print(pomlcka)
+        pocet_pismen_ve_slove(text)
+        print(" ")
 
     if vyber == "1":
-        print(pomlcka)
-        print(f"Ve vybraném textu je {pocet_slov(TEXTS[0])} slov.")
-        print(f"Ve vybraném textu je {počet_slov_zač_velkým_písmenem(TEXTS[0])} slov začínajících velkým písmenem.")
-        print(f"Ve vybraném textu je {počet_slov_velká_písmena(TEXTS[0])} slov obsahující velká písmena.")
-        print(f"Ve vybraném textu je {počet_slov_malá_písmena(TEXTS[0])} slov obsahující malá písmena.")
-        print(f"Ve vybraném textu je {počet_čísel(TEXTS[0])} slov obsahující čísla.")
-        print(f"Ve vybraném textu je součet všech čísel {suma_čísel(TEXTS[0])}.")
-        print(pomlcka)
-        print(f"{"délka":6}|{"výskyt":20}|počet")
-        print(pomlcka)
-        počet_písmen_ve_slově(TEXTS[0])
-        print(" ")
+        vyber_textu(TEXTS[0])
     elif vyber == "2":
-        print(pomlcka)
-        print(f"Ve vybraném textu je {pocet_slov(TEXTS[1])} slov.")
-        print(f"Ve vybraném textu je {počet_slov_zač_velkým_písmenem(TEXTS[1])} slov začínajících velkým písmenem.")
-        print(f"Ve vybraném textu je {počet_slov_velká_písmena(TEXTS[1])} slov obsahující velká písmena.")
-        print(f"Ve vybraném textu je {počet_slov_malá_písmena(TEXTS[1])} slov obsahující malá písmena.")
-        print(f"Ve vybraném textu je {počet_čísel(TEXTS[1])} slov obsahující čísla.")
-        print(f"Ve vybraném textu je součet všech čísel {suma_čísel(TEXTS[1])}.")
-        print(pomlcka)
-        print(f"{"délka":6}|{"výskyt":20}|počet")
-        print(pomlcka)
-        počet_písmen_ve_slově(TEXTS[1])
-        print(" ")
+        vyber_textu(TEXTS[1])  
     elif vyber == "3":
-        print(pomlcka)
-        print(f"Ve vybraném textu je {pocet_slov(TEXTS[2])} slov.")
-        print(f"Ve vybraném textu je {počet_slov_zač_velkým_písmenem(TEXTS[2])} slov začínajících velkým písmenem.")
-        print(f"Ve vybraném textu je {počet_slov_velká_písmena(TEXTS[2])} slov obsahující velká písmena.")
-        print(f"Ve vybraném textu je {počet_slov_malá_písmena(TEXTS[2])} slov obsahující malá písmena.")
-        print(f"Ve vybraném textu je {počet_čísel(TEXTS[2])} slov obsahující čísla.")
-        print(f"Ve vybraném textu je součet všech čísel {suma_čísel(TEXTS[2])}.")
-        print(pomlcka)
-        print(f"{"délka":6}|{"výskyt":20}|počet")
-        print(pomlcka)
-        počet_písmen_ve_slově(TEXTS[2])
-        print(" ")
+        vyber_textu(TEXTS[2])
     elif vyber.isdigit():
         print("Zadali jste špatné číslo. Ukončuji program")
+        exit()
     else:
         print("Nezadali jste číslo. Ukončuji program")
+        exit()
 else:
     print("Neregistrovaný uživatel. Ukončuji program!")
-        
+    exit()   
      
